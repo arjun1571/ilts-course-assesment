@@ -27,7 +27,7 @@ const Modal: React.FC<ModalProps> & {
 
   return (
     <>
-      <div className="fixed inset-0 overflow-y-auto z-50">
+      <div className="fixed inset-40 overflow-y-auto z-50">
         <div
           className="fixed inset-0 bg-gradient-to-br from-black/30 to-black/20 backdrop-blur-[2px] duration-700"
           onClick={closeOnOverlayClick ? onClose : undefined}

@@ -7,8 +7,11 @@ import useScrollPosition from "./useScrollPosition";
 import VideoGallery from "../Trailer/VideoGelary";
 import Button from "@/@components/core/Button/Button";
 import Image from "next/image";
+import AskModal from "../AskModal/AskModal";
+import { useState } from "react";
 
 export default function ProductContent({ data }: { data: any }) {
+  const [modalOpen, setModalOpen] = useState(false);
   const isFixed = useScrollPosition(900);
   const tailer = data?.data.media;
   const checklist = data?.data.checklist;
@@ -49,7 +52,7 @@ export default function ProductContent({ data }: { data: any }) {
           </div>
           <div className="flex items-center justify-between mt-4">
             <p className="text-xs font-bold text-gray-500">কোর্সটি সম্পর্কে বিস্তারিত জানতে</p>
-            <div className="flex items-center gap-1 ">
+            <div className="flex items-center gap-1 cursor-pointer" onClick={() => setModalOpen(true)}>
               <Icon name={"call"} className="text-green-600" />
               <p className="text-xs font-bold text-green-600">ফোন করুন (16910)</p>
             </div>
@@ -174,17 +177,17 @@ export default function ProductContent({ data }: { data: any }) {
               </div>
               <div className="flex items-center justify-between mt-4">
                 <p className="text-xs font-bold text-gray-500">কোর্সটি সম্পর্কে বিস্তারিত জানতে</p>
-                <div className="flex items-center gap-1 ">
+                <div className="flex items-center gap-1 cursor-pointer" onClick={() => setModalOpen(true)}>
                   <Icon name={"call"} className="text-green-600" />
                   <p className="text-xs font-bold text-green-600">ফোন করুন (16910)</p>
                 </div>
               </div>
             </>
           )}
-
-          {/* <div>faka</div> */}
         </div>
       </div>
+
+      <AskModal isModalOpen={modalOpen} setIsModalOpen={setModalOpen} />
     </div>
   );
 }
