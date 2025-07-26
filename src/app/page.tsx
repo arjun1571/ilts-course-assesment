@@ -1,24 +1,21 @@
-"use client";
-import Icon from "@/@components/core/Icon/Icon";
-import { useEffect, useState } from "react";
+import { Metadata } from "next";
+import { fetchProduct } from "@/@service/apis/IltsContentService/ilts.service";
+import ProductContent from "@/@components/page/HomeContent/HomeContent";
 
-export default function Home() {
-  const [isFixed, setIsFixed] = useState(false);
+export async function generateStaticParams() {
+  return [{ lang: "en" }, { lang: "bn" }];
+}
 
-  useEffect(() => {
-    const handleScroll = () => {
-      const scrollPosition = window.scrollY;
-      // Adjust 100 to the position where you want the icon to become fixed
-      if (scrollPosition > 100) {
-        setIsFixed(true);
-      } else {
-        setIsFixed(false);
-      }
-    };
+export async function generateMetadata({ params }: { params: { lang: string } }): Promise<Metadata> {
+  const data = await fetchProduct(params.lang as "en" | "bn");
+  return {
+    title: data?.data?.seo?.title || data.data.title,
+    description: data?.data.seo?.description,
+  };
+}
 
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+export default async function ProductPage({ params }: { params: { lang: "en" | "bn" } }) {
+  const data = await fetchProduct(params.lang);
 
   return (
     <div className="relative">
@@ -27,7 +24,7 @@ export default function Home() {
           <div className="bg-gradient-to-br from-black to-blue-900 min-h-[300px] w-full absolute top-0 left-0"></div>
           <div className="relative flex items-center min-h-[300px] text-white max-w-[1200px] mx-auto my-[40px]">
             <div className="w-[720px] mx-4">
-              <h2 className="text-4xl font-semibold">IELTS Course by Munzereen Shahid</h2>
+              <h2 className="text-4xl font-semibold">{data?.data?.title}</h2>
               <p className="my-2">(82.6% শিক্ষার্থী কোর্স শেষে ৫ রেটিং দিয়েছেন)</p>
               <p>
                 Get complete preparation of Academic IELTS and General Training IELTS in one course! Join our IELTS
@@ -39,119 +36,7 @@ export default function Home() {
           </div>
         </div>
       </div>
-
-      {/* Content container */}
-      <div className="max-w-[1200px] mx-auto relative z-10">
-        {/* Original icon that scrolls and then hides */}
-        {!isFixed && (
-          <div className="absolute top-[-100px] right-0">
-            <div className="border p-4">
-              <Icon name="delete" variant="outlined" size={150} className="text-red-400" />
-            </div>
-          </div>
-        )}
-
-        <div className="flex items-start justify-between">
-          <div className="flex-1">
-            <h1>sdofposdfposdpf</h1>
-            <h1>sdofposdfposdpf</h1>
-            <h1>sdofposdfposdpf</h1>
-            <h1>sdofposdfposdpf</h1>
-            <h1>sdofposdfposdpf</h1>
-            <h1>sdofposdfposdpf</h1>
-            <h1>sdofposdfposdpf</h1>
-            <h1>sdofposdfposdpf</h1>
-            <h1>sdofposdfposdpf</h1>
-            <h1>sdofposdfposdpf</h1>
-            <h1>sdofposdfposdpf</h1>
-            <h1>sdofposdfposdpf</h1>
-            <h1>sdofposdfposdpf</h1>
-            <h1>sdofposdfposdpf</h1>
-            <h1>sdofposdfposdpf</h1>
-            <h1>sdofposdfposdpf</h1>
-            <h1>sdofposdfposdpf</h1>
-            <h1>sdofposdfposdpf</h1>
-            <h1>sdofposdfposdpf</h1>
-            <h1>sdofposdfposdpf</h1>
-            <h1>sdofposdfposdpf</h1>
-            <h1>sdofposdfposdpf</h1>
-            <h1>sdofposdfposdpf</h1>
-            <h1>sdofposdfposdpf</h1>
-            <h1>sdofposdfposdpf</h1>
-            <h1>sdofposdfposdpf</h1>
-            <h1>sdofposdfposdpf</h1>
-            <h1>sdofposdfposdpf</h1>
-            <h1>sdofposdfposdpf</h1>
-            <h1>sdofposdfposdpf</h1>
-            <h1>sdofposdfposdpf</h1>
-            <h1>sdofposdfposdpf</h1>
-            <h1>sdofposdfposdpf</h1>
-            <h1>sdofposdfposdpf</h1>
-            <h1>sdofposdfposdpf</h1>
-            <h1>sdofposdfposdpf</h1>
-            <h1>sdofposdfposdpf</h1>
-            <h1>sdofposdfposdpf</h1>
-            <h1>sdofposdfposdpf</h1>
-            <h1>sdofposdfposdpf</h1>
-            <h1>sdofposdfposdpf</h1>
-            <h1>sdofposdfposdpf</h1>
-            <h1>sdofposdfposdpf</h1>
-            <h1>sdofposdfposdpf</h1>
-            <h1>sdofposdfposdpf</h1>
-            <h1>sdofposdfposdpf</h1>
-            <h1>sdofposdfposdpf</h1>
-            <h1>sdofposdfposdpf</h1>
-            <h1>sdofposdfposdpf</h1>
-            <h1>sdofposdfposdpf</h1>
-            <h1>sdofposdfposdpf</h1>
-            <h1>sdofposdfposdpf</h1>
-            <h1>sdofposdfposdpf</h1>
-            <h1>sdofposdfposdpf</h1>
-            <h1>sdofposdfposdpf</h1>
-            <h1>sdofposdfposdpf</h1>
-            <h1>sdofposdfposdpf</h1>
-            <h1>sdofposdfposdpf</h1>
-            <h1>sdofposdfposdpf</h1>
-            <h1>sdofposdfposdpf</h1>
-            <h1>sdofposdfposdpf</h1>
-            <h1>sdofposdfposdpf</h1>
-            <h1>sdofposdfposdpf</h1>
-            <h1>sdofposdfposdpf</h1>
-            <h1>sdofposdfposdpf</h1>
-            <h1>sdofposdfposdpf</h1>
-            <h1>sdofposdfposdpf</h1>
-            <h1>sdofposdfposdpf</h1>
-            <h1>sdofposdfposdpf</h1>
-            <h1>sdofposdfposdpf</h1>
-            <h1>sdofposdfposdpf</h1>
-            <h1>sdofposdfposdpf</h1>
-            <h1>sdofposdfposdpf</h1>
-            <h1>sdofposdfposdpf</h1>
-            <h1>sdofposdfposdpf</h1>
-            <h1>sdofposdfposdpf</h1>
-            <h1>sdofposdfposdpf</h1>
-            <h1>sdofposdfposdpf</h1>
-            <h1>sdofposdfposdpf</h1>
-            <h1>sdofposdfposdpf</h1>
-            <h1>sdofposdfposdpf</h1>
-            <h1>sdofposdfposdpf</h1>
-            <h1>sdofposdfposdpf</h1>
-            <h1>sdofposdfposdpf</h1>
-            <h1>sdofposdfposdpf</h1>
-            {/* ... rest of your content ... */}
-          </div>
-
-          {/* Right sidebar with fixed icon when scrolling */}
-          <div className="w-[300px] sticky top-20 ml-4">
-            {isFixed && (
-              <div className="border p-4 mb-4">
-                <Icon name="delete" variant="outlined" size={150} className="text-red-400" />
-              </div>
-            )}
-            <div>faka</div>
-          </div>
-        </div>
-      </div>
+      <ProductContent data={data} />
     </div>
   );
 }

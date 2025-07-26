@@ -6,7 +6,6 @@ import Image from "next/image";
 import logo from "@/@assets/images/10mslogo-svg.svg";
 import Button from "@/@components/core/Button/Button";
 import Icon from "@/@components/core/Icon/Icon";
-import Input from "@/@components/core/Input/Input";
 import SearchComponent from "@/@components/core/Input/Search";
 
 const Navbar = () => {
