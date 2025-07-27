@@ -4,6 +4,7 @@ import "./globals.css";
 import Navbar from "@/@components/page/Navbar/Navbar";
 import "material-icons/iconfont/material-icons.css";
 import { Suspense } from "react";
+import Footer from "@/@components/page/Footer/Footer";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -34,6 +35,7 @@ export default function RootLayout({
           </Suspense>
 
           {children}
+          <Footer />
         </div>
       </body>
     </html>

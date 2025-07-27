@@ -1,5 +1,4 @@
 "use client";
-
 import Button from "@/@components/core/Button/Button";
 import Icon from "@/@components/core/Icon/Icon";
 import Image from "next/image";
@@ -15,7 +14,7 @@ type MediaItem = {
 export default function VideoGallery({ media }: { media: MediaItem[] }) {
   const videos = media.filter((item) => item.resource_type === "video");
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [isPlaying, setIsPlaying] = useState(false); // track if video is playing
+  const [isPlaying, setIsPlaying] = useState(false);
 
   const currentVideo = videos[currentIndex];
 

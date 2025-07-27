@@ -1,3 +1,4 @@
+"use client";
 import React, { useEffect } from "react";
 
 interface HTMLContentProps {
@@ -6,11 +7,8 @@ interface HTMLContentProps {
 
 const HTMLParser: React.FC<HTMLContentProps> = ({ htmlContent }) => {
   useEffect(() => {
-    // Set target="_blank" for all links
     const links = document.querySelectorAll(".html-parser a");
     links.forEach((link) => link.setAttribute("target", "_blank"));
-
-    // Add alt text to images if missing
     const images = document.querySelectorAll(".html-parser img");
     images.forEach((img) => {
       if (!img.getAttribute("alt")) {
@@ -36,6 +34,7 @@ const HTMLParser: React.FC<HTMLContentProps> = ({ htmlContent }) => {
             //    font-weight: semi-bold;
             //    padding-top: 20px;
             //    padding-left: 15px
+           
             
           }
           

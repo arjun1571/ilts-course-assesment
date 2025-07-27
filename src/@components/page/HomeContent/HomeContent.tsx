@@ -1,8 +1,5 @@
-// src/components/ProductContent.tsx
 "use client";
-
 import Icon from "@/@components/core/Icon/Icon";
-import Title from "@/@components/page/Navbar/Title";
 import useScrollPosition from "./useScrollPosition";
 import VideoGallery from "../Trailer/VideoGelary";
 import Button from "@/@components/core/Button/Button";
@@ -11,6 +8,7 @@ import AskModal from "../AskModal/AskModal";
 import { useState } from "react";
 import Carousel from "@/@components/core/Carosal/Carosal";
 import HTMLParser from "@/@components/core/HtmlParser/HtmlParser";
+import Accordion from "@/@components/core/Accordion/Accordion";
 
 export default function ProductContent({ data }: { data: any }) {
   const [modalOpen, setModalOpen] = useState(false);
@@ -27,6 +25,7 @@ export default function ProductContent({ data }: { data: any }) {
   const featureExplanationsSection = carouselItems?.find(
     (item: { type: string }) => item.type === "feature_explanations"
   );
+  const aboutSection = carouselItems?.find((item: { type: string }) => item.type === "about");
 
   const handleSectionClick = (orderIdx: number) => {
     setActiveSection(orderIdx);
@@ -34,6 +33,11 @@ export default function ProductContent({ data }: { data: any }) {
     if (sectionElement) {
       sectionElement.scrollIntoView({ behavior: "smooth" });
     }
+  };
+
+  const [openAccordion, setOpenAccordion] = useState<number | null>(null);
+  const handleAccordionClick = (accordionId: number) => {
+    setOpenAccordion((prev) => (prev === accordionId ? null : accordionId));
   };
 
   return (
@@ -203,6 +207,25 @@ export default function ProductContent({ data }: { data: any }) {
                     </div>
                   </div>
                 </div>
+              ))}
+            </div>
+          </div>
+
+          <div className="mt-8">
+            <h2 className="mb-4 text-xl font-semibold md:text-xl">{aboutSection?.name}</h2>
+
+            <div className=" border border-gray-300  px-5">
+              {aboutSection?.values?.map((about: any, index: string) => (
+                <Accordion
+                  key={about?.id}
+                  title={about.title}
+                  isOpen={openAccordion === about.id}
+                  onToggle={() => handleAccordionClick(about.id)}
+                >
+                  <div className="bg-white rounded-b-lg mt-3 text-text-secondary lg:text-[16px] md:text-[14px] sm:text-[12px] xs:text-[12px] font-inter cursor-pointer font-medium">
+                    <HTMLParser htmlContent={about?.description} />
+                  </div>
+                </Accordion>
               ))}
             </div>
           </div>
