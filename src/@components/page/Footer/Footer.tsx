@@ -5,8 +5,8 @@ import React from "react";
 const Footer: React.FC = () => {
   return (
     <footer className="bg-white text-gray-800">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 pt-20 pb-10">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+      <div className="lg:container mx-auto px-4 sm:px-6 lg:px-8 lg:pt-20 pt-10 lg:pb-10 pb-5">
+        <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 lg:gap-8 md:gap-4 gap-2">
           {/* Logo and App Download */}
           <div className="space-y-4">
             <Image
@@ -17,7 +17,7 @@ const Footer: React.FC = () => {
               className="h-auto"
             />
             <p className="font-medium">Download Our Mobile App</p>
-            <div className="flex flex-wrap gap-2">
+            <div className="md:flex flex-wrap gap-2">
               <a href="#" aria-label="Download on Google Play">
                 <Image
                   src="https://cdn.10minuteschool.com/images/google-play-icon_1695731678094.png"
@@ -33,7 +33,7 @@ const Footer: React.FC = () => {
                   alt="App Store"
                   width={120}
                   height={40}
-                  className="h-auto"
+                  className="h-auto md:mt-0 mt-2"
                 />
               </a>
             </div>
@@ -93,8 +93,8 @@ const Footer: React.FC = () => {
               </li>
               <li>
                 <span>Email Us: </span>
-                <a href="mailto:support@10minuteschool.com" className="text-green-500 hover:underline">
-                  support@10minuteschool.com
+                <a href="mailto:support@10minuteschool.com" className="text-green-500 hover:underline text-wrap">
+                  support@10minute.com
                 </a>
               </li>
             </ul>

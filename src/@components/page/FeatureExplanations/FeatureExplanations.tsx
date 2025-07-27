@@ -31,7 +31,7 @@ const FeatureExplanations: React.FC<FeatureExplanationsSectionProps> = ({ orderI
               index < explanations.length - 1 ? "border-b border-gray-300" : ""
             }`}
           >
-            <div className="flex items-start justify-between w-full">
+            <div className="lg:flex items-start justify-between w-full">
               <div>
                 <h3 className="text-base font-semibold leading-8 text-[#111827] md:text-lg">{explanation.title}</h3>
                 {explanation.checklist.map((item, idx) => (
@@ -41,7 +41,7 @@ const FeatureExplanations: React.FC<FeatureExplanationsSectionProps> = ({ orderI
                   </div>
                 ))}
               </div>
-              <div className="flex-shrink-0 ml-4">
+              <div className="flex-shrink-0 ml-4 lg:mt-0 mt-6 lg:justify-normal justify-center flex lg:flex-none">
                 <Image src={explanation.file_url} alt={explanation.title} height={150} width={200} />
               </div>
             </div>

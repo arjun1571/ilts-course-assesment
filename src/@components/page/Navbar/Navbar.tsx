@@ -32,14 +32,14 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 px-6 py-3 bg-white dark:bg-gray-900 border-b border-gray-300">
-      <div className="max-w-[1440px] flex justify-between items-center mx-auto px-7 ">
+    <nav className="fixed top-0 left-0 right-0 z-50 lg:px-6 px-3 py-3 bg-white dark:bg-gray-900 border-b border-gray-300">
+      <div className="max-w-[1440px] flex justify-between items-center mx-auto lg:px-7 px-0">
         <div
           className="text-xl font-bold cursor-pointer text-gray-800 dark:text-white flex items-center gap-4"
           onClick={() => router.push("/")}
         >
           <Image src={logo} alt={""} height={27} width={100} />
-          <div className=" ">
+          <div className="lg:block hidden ">
             <SearchComponent
               placeholder="Search products..."
               onSearch={handleSearch}
@@ -50,38 +50,40 @@ const Navbar = () => {
           </div>
         </div>
 
-        <div className="flex items-center gap-8">
+        <div className="flex items-center gap-8 ">
           {/* Main Menu Items */}
-          <ul className="flex items-center space-x-6">
-            {menuItems.map((item) => (
-              <li
-                key={item.title}
-                className="relative group"
-                onMouseEnter={() => setHoveredItem(item.title)}
-                onMouseLeave={() => setHoveredItem(null)}
-              >
-                <button className="text-gray-700 text-sm dark:text-white flex items-center hover:text-green-600 dark:hover:text-green-400 font-medium transition-colors cursor-pointer">
-                  {item.title}
-                  <Icon name="keyboard_arrow_down" className="text-gray-500" />
-                </button>
+          <div className="xl:block hidden">
+            <ul className="flex items-center space-x-6 ">
+              {menuItems.map((item) => (
+                <li
+                  key={item.title}
+                  className="relative group"
+                  onMouseEnter={() => setHoveredItem(item.title)}
+                  onMouseLeave={() => setHoveredItem(null)}
+                >
+                  <button className="text-gray-700 text-sm dark:text-white flex items-center hover:text-green-600 dark:hover:text-green-400 font-medium transition-colors cursor-pointer">
+                    {item.title}
+                    <Icon name="keyboard_arrow_down" className="text-gray-500" />
+                  </button>
 
-                {/* Submenu Dropdown */}
-                {hoveredItem === item.title && (
-                  <div className="absolute left-0 mt-0.5 w-48 bg-white dark:bg-gray-800 rounded-md shadow-lg py-1 z-50 border border-gray-200 dark:border-gray-700">
-                    {item.submenu.map((subItem) => (
-                      <a
-                        key={subItem.title}
-                        href={subItem.path}
-                        className="block px-4 py-2 text-gray-800 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors cursor-pointer"
-                      >
-                        {subItem.title}
-                      </a>
-                    ))}
-                  </div>
-                )}
-              </li>
-            ))}
-          </ul>
+                  {/* Submenu Dropdown */}
+                  {hoveredItem === item.title && (
+                    <div className="absolute left-0 mt-0.5 w-48 bg-white dark:bg-gray-800 rounded-md shadow-lg py-1 z-50 border border-gray-200 dark:border-gray-700">
+                      {item.submenu.map((subItem) => (
+                        <a
+                          key={subItem.title}
+                          href={subItem.path}
+                          className="block px-4 py-2 text-gray-800 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors cursor-pointer"
+                        >
+                          {subItem.title}
+                        </a>
+                      ))}
+                    </div>
+                  )}
+                </li>
+              ))}
+            </ul>
+          </div>
 
           {/* Right side items */}
           <div className="flex items-center space-x-4">

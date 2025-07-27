@@ -110,7 +110,7 @@ const VideoGallery: React.FC<VideoGalleryProps> = ({ media }) => {
 
       {/* Thumbnail Gallery */}
       {videos.length > 1 && (
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-3 px-4">
+        <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 gap-3 px-4">
           {videos.map((video, index) => (
             <div
               key={`${video.resource_value}-${index}`}
@@ -127,7 +127,7 @@ const VideoGallery: React.FC<VideoGalleryProps> = ({ media }) => {
                   alt={`${video.name} thumbnail`}
                   width={160}
                   height={90}
-                  className="w-full aspect-video object-cover"
+                  className="w-full h-full aspect-video object-cover "
                   loading="lazy"
                 />
               )}
