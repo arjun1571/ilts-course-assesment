@@ -34,7 +34,7 @@ export default async function ProductPage({ params }: { params: { lang: "en" | "
               <span className="my-2">(82.6% শিক্ষার্থী কোর্স শেষে ৫ রেটিং দিয়েছেন)</span>
             </div>
 
-            <p className="text-base" dangerouslySetInnerHTML={{ __html: data?.data?.description }}></p>
+            <div className="text-base" dangerouslySetInnerHTML={{ __html: data?.data?.description || "" }}></div>
           </div>
         </div>
       </div>

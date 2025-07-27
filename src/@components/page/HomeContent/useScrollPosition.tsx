@@ -10,13 +10,9 @@ const useScrollPosition = (threshold = 100) => {
       setIsScrolled(window.scrollY > threshold);
     };
 
-    // Set initial state
     handleScroll();
-
-    // Add event listener
     window.addEventListener("scroll", handleScroll, { passive: true });
 
-    // Clean up
     return () => window.removeEventListener("scroll", handleScroll);
   }, [threshold]);
 

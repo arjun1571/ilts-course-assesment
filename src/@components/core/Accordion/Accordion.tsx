@@ -17,7 +17,7 @@ const Accordion: React.FC<AccordionProps> = ({ title, isOpen, onToggle, children
       onClick={onToggle}
     >
       <div className="flex items-center justify-between">
-        <h3 className=" text-[14px] lg:text-[16px] text-text-primary font-inter font-medium p-[10px]">
+        <h3 className=" text-sm lg:text-[16px] text-text-primary font-inter font-medium p-[10px]">
           <HTMLParser htmlContent={title} />
         </h3>
         <>
@@ -33,7 +33,7 @@ const Accordion: React.FC<AccordionProps> = ({ title, isOpen, onToggle, children
         </>
       </div>
       <Collapse isOpened={isOpen} className="">
-        <div className="accordion-content transition-all duration-300 ease-in-out md:text-[16px] text-[14px] font-medium font-inter text-[#48505E] pb-[10px] px-[10px]">
+        <div className="accordion-content pb-4 transition-all duration-300 ease-in-out md:text-[18px] text-[14px] font-medium font-inter text-[#48505E]  px-[10px]">
           {children}
         </div>
       </Collapse>

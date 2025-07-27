@@ -21,11 +21,13 @@ const Navbar = () => {
   const changeLanguage = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const newLang = e.target.value as "en" | "bn";
     setLang(newLang);
-
+    localStorage.setItem("lang", newLang);
     const params = new URLSearchParams(searchParams.toString());
     params.set("lang", newLang);
     router.push(`${pathname}?${params.toString()}`);
   };
+
+  console.log(lang);
 
   const menuItems = [
     {
