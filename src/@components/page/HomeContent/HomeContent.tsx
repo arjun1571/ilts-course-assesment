@@ -23,6 +23,10 @@ export default function ProductContent({ data }: { data: any }) {
   const carouselItems = data?.data.sections?.filter((item: { name: string }) => item.name && item.name.trim() !== "");
   const instructorsSection = carouselItems?.find((item: { type: string }) => item.type === "instructors");
   const featuresSection = carouselItems?.find((item: { type: string }) => item.type === "features");
+  const pointersSection = carouselItems?.find((item: { type: string }) => item.type === "pointers");
+  const featureExplanationsSection = carouselItems?.find(
+    (item: { type: string }) => item.type === "feature_explanations"
+  );
 
   const handleSectionClick = (orderIdx: number) => {
     setActiveSection(orderIdx);
@@ -76,8 +80,8 @@ export default function ProductContent({ data }: { data: any }) {
         </div>
       )}
 
-      <div className="flex items-start justify-between">
-        <div className="flex-1 w-8/12">
+      <div className="flex items-start justify-between gap-12">
+        <div className="flex-1 w-[63%]">
           <div className="w-full ">
             <div className="mb-8">
               <Carousel items={carouselItems} />
@@ -133,90 +137,75 @@ export default function ProductContent({ data }: { data: any }) {
           <div className="mt-8">
             <h2 className="mb-4 text-xl font-semibold md:text-xl">{featuresSection?.name}</h2>
 
-            <div className="border border-gray-300 rounded">
+            <div className=" mb-16 grid grid-cols-1 gap-4 rounded-md border bg-[#111827] p-6 md:grid-cols-2 md:gap-8">
               {featuresSection?.values?.map((feature: any, index: string) => (
-                <div className="flex items-center border border-gray-300 px-5 pt-5 gap-4 rounded " key={index}>
-                  sdfsdf
+                <div className="  " key={index}>
+                  <div className="flex items-start gap-3">
+                    <div className="">
+                      <Image src={feature.icon} alt={feature.title} width={40} height={40} className="" />
+                    </div>
+                    <div className="">
+                      <p className="text-[18px] font-normal  text-white ">{feature.title}</p>
+                      <p className="gap-2 mt-2 text-sm font-[400px] leading-6  text-[#9CA3AF]">{feature.subtitle}</p>
+                    </div>
+                  </div>
                 </div>
               ))}
             </div>
           </div>
 
-          <h1>sdofposdfposdpf</h1>
-          <h1>sdofposdfposdpf</h1>
-          <h1>sdofposdfposdpf</h1>
-          <h1>sdofposdfposdpf</h1>
-          <h1>sdofposdfposdpf</h1>
-          <h1>sdofposdfposdpf</h1>
-          <h1>sdofposdfposdpf</h1>
-          <h1>sdofposdfposdpf</h1>
-          <h1>sdofposdfposdpf</h1>
-          <h1>sdofposdfposdpf</h1>
-          <h1>sdofposdfposdpf</h1>
-          <h1>sdofposdfposdpf</h1>
-          <h1>sdofposdfposdpf</h1>
-          <h1>sdofposdfposdpf</h1>
-          <h1>sdofposdfposdpf</h1>
-          <h1>sdofposdfposdpf</h1>
-          <h1>sdofposdfposdpf</h1>
-          <h1>sdofposdfposdpf</h1>
-          <h1>sdofposdfposdpf</h1>
-          <h1>sdofposdfposdpf</h1>
-          <h1>sdofposdfposdpf</h1>
-          <h1>sdofposdfposdpf</h1>
-          <h1>sdofposdfposdpf</h1>
-          <h1>sdofposdfposdpf</h1>
-          <h1>sdofposdfposdpf</h1>
-          <h1>sdofposdfposdpf</h1>
-          <h1>sdofposdfposdpf</h1>
-          <h1>sdofposdfposdpf</h1>
-          <h1>sdofposdfposdpf</h1>
-          <h1>sdofposdfposdpf</h1>
-          <h1>sdofposdfposdpf</h1>
-          <h1>sdofposdfposdpf</h1>
-          <h1>sdofposdfposdpf</h1>
-          <h1>sdofposdfposdpf</h1>
-          <h1>sdofposdfposdpf</h1>
-          <h1>sdofposdfposdpf</h1>
-          <h1>sdofposdfposdpf</h1>
-          <h1>sdofposdfposdpf</h1>
-          <h1>sdofposdfposdpf</h1>
-          <h1>sdofposdfposdpf</h1>
-          <h1>sdofposdfposdpf</h1>
-          <h1>sdofposdfposdpf</h1>
-          <h1>sdofposdfposdpf</h1>
-          <h1>sdofposdfposdpf</h1>
-          <h1>sdofposdfposdpf</h1>
-          <h1>sdofposdfposdpf</h1>
-          <h1>sdofposdfposdpf</h1>
-          <h1>sdofposdfposdpf</h1>
-          <h1>sdofposdfposdpf</h1>
-          <h1>sdofposdfposdpf</h1>
-          <h1>sdofposdfposdpf</h1>
-          <h1>sdofposdfposdpf</h1>
-          <h1>sdofposdfposdpf</h1>
-          <h1>sdofposdfposdpf</h1>
-          <h1>sdofposdfposdpf</h1>
-          <h1>sdofposdfposdpf</h1>
-          <h1>sdofposdfposdpf</h1>
-          <h1>sdofposdfposdpf</h1>
-          <h1>sdofposdfposdpf</h1>
-          <h1>sdofposdfposdpf</h1>
-          <h1>sdofposdfposdpf</h1>
-          <h1>sdofposdfposdpf</h1>
-          <h1>sdofposdfposdpf</h1>
-          <h1>sdofposdfposdpf</h1>
-          <h1>sdofposdfposdpf</h1>
-          <h1>sdofposdfposdpf</h1>
-          <h1>sdofposdfposdpf</h1>
-          <h1>sdofposdfposdpf</h1>
-          <h1>sdofposdfposdpf</h1>
-          <h1>sdofposdfposdpf</h1>
-          <h1>sdofposdfposdpf</h1>
-          <h1>sdofposdfposdpf</h1>
-          <h1>sdofposdfposdpf</h1>
-          <h1>sdofposdfposdpf</h1>
-          <h1>sdofposdfposdpf</h1>
+          <div className="mt-8">
+            <h2 className="mb-4 text-xl font-semibold md:text-xl">{pointersSection?.name}</h2>
+
+            <div className=" mb-16 grid grid-cols-1 gap-4 rounded-md border border-gray-300  p-6 md:grid-cols-2 md:gap-4">
+              {pointersSection?.values?.map((pointers: any, index: string) => (
+                <div className="  " key={index}>
+                  <div className="flex items-start gap-3">
+                    <div className="">
+                      <Icon name={"done_all"} className="text-blue-300" />
+                    </div>
+                    <div className="">
+                      <p className="gap-2 text-sm font-medium leading-6 text-gray-800">{pointers.text}</p>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <div className="mt-8">
+            <h2 className="mb-4 text-xl font-semibold md:text-xl">{featureExplanationsSection?.name}</h2>
+
+            <div className=" border border-gray-300  px-5">
+              {featureExplanationsSection?.values?.map((featureExplanations: any, index: string) => (
+                <div
+                  className=" flex flex-col items-start justify-between gap-3 py-5 md:flex-row border-b border-gray-300"
+                  key={index}
+                >
+                  <div className=" flex items-start justify-between w-full">
+                    <div>
+                      <h2 className="text-[14px] font-[500px] leading-[30px] text-[#111827] md:text-[16px]">
+                        {featureExplanations.title}
+                      </h2>
+                      {featureExplanations.checklist.map((checkList: any, index: any) => (
+                        <div key={index} className="flex items-center gap-2 ">
+                          <div className="">
+                            <Icon name={"done_all"} className="text-blue-300" />
+                          </div>
+                          <div className="">
+                            <p className="gap-2 text-sm font-medium leading-6 text-gray-800">{checkList}</p>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                    <div>
+                      <Image src={featureExplanations.file_url} alt={""} height={200} width={250} />
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
         </div>
 
         <div className=" sticky top-20 ml-4 w-8/12">
