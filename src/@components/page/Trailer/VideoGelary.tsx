@@ -11,7 +11,11 @@ type MediaItem = {
   thumbnail_url?: string;
 };
 
-export default function VideoGallery({ media }: { media: MediaItem[] }) {
+type VideoGalleryProps = {
+  media: MediaItem[];
+};
+
+const VideoGallery: React.FC<VideoGalleryProps> = ({ media }) => {
   const videos = media.filter((item) => item.resource_type === "video");
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isPlaying, setIsPlaying] = useState(false);
@@ -33,15 +37,41 @@ export default function VideoGallery({ media }: { media: MediaItem[] }) {
     setIsPlaying(false);
   };
 
+  const togglePlay = () => {
+    if (currentVideo.resource_value) {
+      setIsPlaying(true);
+    }
+  };
+
+  if (videos.length === 0) {
+    return <div className="w-full max-w-4xl mx-auto text-center py-10 text-gray-500">No videos available</div>;
+  }
+
   return (
     <div className="w-full max-w-4xl mx-auto text-white">
-      {/* Main Player or Thumbnail */}
+      {/* Main Video Player */}
       <div className="relative aspect-video mb-4 rounded-md overflow-hidden bg-black">
         {!isPlaying ? (
-          <div className="w-full h-full relative cursor-pointer" onClick={() => setIsPlaying(true)}>
-            <Image src={currentVideo.thumbnail_url || ""} alt="Video thumbnail" fill className="object-cover" />
+          <div
+            className="w-full h-full relative cursor-pointer"
+            onClick={togglePlay}
+            aria-label="Play video"
+            role="button"
+          >
+            {currentVideo.thumbnail_url && (
+              <Image
+                src={currentVideo.thumbnail_url}
+                alt={`${currentVideo.name} thumbnail`}
+                fill
+                className="object-cover"
+                priority={currentIndex === 0}
+              />
+            )}
             <div className="absolute inset-0 bg-black/40 flex items-center justify-center">
-              <Button className="!bg-white  !px-3.5 py-2 !rounded-full !text-green-600 border-4 border-gray-400 !text-xl cursor-pointer">
+              <Button
+                className="!bg-white !px-3.5 py-2 !rounded-full !text-green-600 border-4 border-gray-400 !text-xl"
+                aria-label="Play button"
+              >
                 ▶
               </Button>
             </div>
@@ -50,47 +80,63 @@ export default function VideoGallery({ media }: { media: MediaItem[] }) {
           <iframe
             className="w-full h-full"
             src={`https://www.youtube.com/embed/${currentVideo.resource_value}?autoplay=1`}
-            title="Demo Video"
+            title={currentVideo.name}
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
             allowFullScreen
+            loading="lazy"
           />
         )}
 
-        {/* Prev/Next Buttons */}
-        <Button
-          className="absolute !h-10 !w-10 cursor-pointer left-2 top-1/2 transform -translate-y-1/2 bg-black/60 !p-2 !rounded-full hover:bg-black"
-          onClick={handlePrev}
-        >
-          <Icon name="chevron_left" />
-        </Button>
-        <Button
-          className="absolute !h-10 !w-10 cursor-pointer right-2 top-1/2 transform -translate-y-1/2 bg-black/60 !p-2 !rounded-full hover:bg-black"
-          onClick={handleNext}
-        >
-          <Icon name="chevron_right" />
-        </Button>
+        {/* Navigation Buttons */}
+        {videos.length > 1 && (
+          <>
+            <Button
+              className="absolute !h-10 !w-10 left-2 top-1/2 transform -translate-y-1/2 bg-black/60 !p-2 !rounded-full hover:bg-black z-10"
+              onClick={handlePrev}
+              aria-label="Previous video"
+            >
+              <Icon name="chevron_left" />
+            </Button>
+            <Button
+              className="absolute !h-10 !w-10 right-2 top-1/2 transform -translate-y-1/2 bg-black/60 !p-2 !rounded-full hover:bg-black z-10"
+              onClick={handleNext}
+              aria-label="Next video"
+            >
+              <Icon name="chevron_right" />
+            </Button>
+          </>
+        )}
       </div>
 
-      {/* Thumbnails */}
-      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-3 px-4">
-        {videos.map((video, index) => (
-          <div
-            key={video.resource_value}
-            className={`cursor-pointer border-2 ${
-              index === currentIndex ? "border-blue-500" : "border-transparent hover:border-gray-400"
-            } rounded-md overflow-hidden`}
-            onClick={() => handleSelect(index)}
-          >
-            <Image
-              src={video.thumbnail_url || ""}
-              alt="Video thumbnail"
-              className="w-full h-10 object-cover"
-              height={100}
-              width={100}
-            />
-          </div>
-        ))}
-      </div>
+      {/* Thumbnail Gallery */}
+      {videos.length > 1 && (
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-3 px-4">
+          {videos.map((video, index) => (
+            <div
+              key={`${video.resource_value}-${index}`}
+              className={`cursor-pointer border-2 transition-all ${
+                index === currentIndex ? "border-blue-500 scale-105" : "border-transparent hover:border-gray-400"
+              } rounded-md overflow-hidden`}
+              onClick={() => handleSelect(index)}
+              aria-label={`Select video: ${video.name}`}
+              role="button"
+            >
+              {video.thumbnail_url && (
+                <Image
+                  src={video.thumbnail_url}
+                  alt={`${video.name} thumbnail`}
+                  width={160}
+                  height={90}
+                  className="w-full aspect-video object-cover"
+                  loading="lazy"
+                />
+              )}
+            </div>
+          ))}
+        </div>
+      )}
     </div>
   );
-}
+};
+
+export default VideoGallery;

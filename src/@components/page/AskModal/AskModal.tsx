@@ -1,10 +1,13 @@
 "use client";
 import Button from "@/@components/core/Button/Button";
-import Icon from "@/@components/core/Icon/Icon";
 import Modal from "@/@components/core/Modal/Modal";
 import Image from "next/image";
+interface IAskModalProps {
+  isModalOpen: boolean;
+  setIsModalOpen: (value: boolean) => void;
+}
 
-const AskModal = ({ isModalOpen, setIsModalOpen }: any) => {
+const AskModal = ({ isModalOpen, setIsModalOpen }: IAskModalProps) => {
   return (
     <div>
       <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} width="w-full md:w-3/4" maxWidth="max-w-4xl">

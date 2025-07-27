@@ -7,14 +7,13 @@ import logo from "@/@assets/images/10mslogo-svg.svg";
 import Button from "@/@components/core/Button/Button";
 import Icon from "@/@components/core/Icon/Icon";
 import SearchComponent from "@/@components/core/Input/Search";
+import { menuItems } from "@/utils/data";
 
 const Navbar = () => {
   const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();
-
   const initialLang = (searchParams.get("lang") === "en" ? "en" : "bn") as "en" | "bn";
-
   const [lang, setLang] = useState<"en" | "bn">(initialLang);
   const [hoveredItem, setHoveredItem] = useState<string | null>(null);
 
@@ -26,63 +25,6 @@ const Navbar = () => {
     params.set("lang", newLang);
     router.push(`${pathname}?${params.toString()}`);
   };
-
-  console.log(lang);
-
-  const menuItems = [
-    {
-      title: "Class 6-12",
-      submenu: [
-        { title: "Class 6", path: "/class-6" },
-        { title: "Class 7", path: "/class-7" },
-        { title: "Class 8", path: "/class-8" },
-        { title: "Class 9", path: "/class-9" },
-        { title: "Class 10", path: "/class-10" },
-        { title: "Class 11", path: "/class-11" },
-        { title: "Class 12", path: "/class-12" },
-      ],
-    },
-    {
-      title: "Skills",
-      submenu: [
-        { title: "Programming", path: "/skills/programming" },
-        { title: "Design", path: "/skills/design" },
-        { title: "Marketing", path: "/skills/marketing" },
-      ],
-    },
-    {
-      title: "Admission",
-      submenu: [
-        { title: "University", path: "/admission/university" },
-        { title: "College", path: "/admission/college" },
-        { title: "School", path: "/admission/school" },
-      ],
-    },
-    {
-      title: "Online Batch",
-      submenu: [
-        { title: "Live Classes", path: "/online/live" },
-        { title: "Recorded Courses", path: "/online/recorded" },
-        { title: "Weekend Batch", path: "/online/weekend" },
-      ],
-    },
-    {
-      title: "English Centre",
-      submenu: [
-        { title: "Spoken English", path: "/english/spoken" },
-        { title: "IELTS Preparation", path: "/english/ielts" },
-        { title: "TOEFL Preparation", path: "/english/toefl" },
-      ],
-    },
-    {
-      title: "More",
-      submenu: [
-        { title: "About Us", path: "/about" },
-        { title: "Contact", path: "/contact" },
-        { title: "FAQ", path: "/faq" },
-      ],
-    },
-  ];
 
   const handleSearch = (term: string) => {
     console.log("Searching for:", term);

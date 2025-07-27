@@ -1,17 +1,15 @@
 "use client";
 import React, { useRef } from "react";
 import Button from "../Button/Button";
-import Icon from "../Icon/Icon";
 
-// Define a more specific type for the items
 interface CarouselItem {
   name: string;
-  order_idx: number; // Add order_idx to identify the section
+  order_idx: number;
 }
 
 interface CarouselProps {
   items: CarouselItem[];
-  onItemClick: (orderIdx: number) => void; // Add a callback prop
+  onItemClick: (orderIdx: number) => void;
 }
 
 const Carousel: React.FC<CarouselProps> = ({ items, onItemClick }) => {
@@ -40,7 +38,6 @@ const Carousel: React.FC<CarouselProps> = ({ items, onItemClick }) => {
           {items?.map((item) => (
             <div
               key={item.order_idx}
-              // Use the callback function passed from the parent
               onClick={() => onItemClick(item.order_idx)}
               className="py-2 px-4 mx-2 text-center cursor-pointer whitespace-nowrap text-gray-600 hover:text-blue-600 hover:border-blue-600 border-b-2 border-transparent transition-all font-medium"
             >
