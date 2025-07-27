@@ -1,81 +1,114 @@
+import { companyItemsData, otherItemsData } from "@/utils/data";
 import Image from "next/image";
 import React from "react";
 
 const Footer: React.FC = () => {
   return (
-    <div className="">
-      <div className="max-w-[1200px] mx-auto grid-cols-1  sm:grid-cols-2 grid xl:gap-10 gap-5 py-14 ">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-5 items-start">
-          <div className="">
-            <Image src={"https://10minuteschool.com/images/logo.svg"} alt={"footer logo"} height={100} width={100} />
-            <p className="py-3 font-semibold">Download Our Mobile App</p>
-            <div className="flex items-center gap-4">
-              <Image
-                src={"https://cdn.10minuteschool.com/images/google-play-icon_1695731678094.png"}
-                alt={"footer logo"}
-                height={130}
-                width={130}
-              />
-              <Image
-                src={"https://cdn.10minuteschool.com/images/ios-store-icon_1695731704002.png"}
-                alt={"footer logo"}
-                height={130}
-                width={130}
-              />
+    <footer className="bg-white text-gray-800">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 pt-20 pb-10">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          {/* Logo and App Download */}
+          <div className="space-y-4">
+            <Image
+              src="https://10minuteschool.com/images/logo.svg"
+              alt="10 Minute School Logo"
+              width={120}
+              height={40}
+              className="h-auto"
+            />
+            <p className="font-medium">Download Our Mobile App</p>
+            <div className="flex flex-wrap gap-2">
+              <a href="#" aria-label="Download on Google Play">
+                <Image
+                  src="https://cdn.10minuteschool.com/images/google-play-icon_1695731678094.png"
+                  alt="Google Play"
+                  width={120}
+                  height={40}
+                  className="h-auto"
+                />
+              </a>
+              <a href="#" aria-label="Download on App Store">
+                <Image
+                  src="https://cdn.10minuteschool.com/images/ios-store-icon_1695731704002.png"
+                  alt="App Store"
+                  width={120}
+                  height={40}
+                  className="h-auto"
+                />
+              </a>
             </div>
           </div>
-          <div>
-            <p className=" font-bold text-lg">Company</p>
-            <ul className="">
-              <li className="mt-1.5  hover:cursor-pointer">Career / Recruitment</li>
-              <li className="mt-1.5 hover:text-green-500 hover:cursor-pointer">Join as a Teacher</li>
-              <li className="mt-1.5  hover:text-green-500 hover:cursor-pointer">Join as an Affiliate</li>
-              <li className="mt-1.5  hover:text-green-500 hover:cursor-pointer">Privacy policy</li>
-              <li className="mt-1.5  hover:text-green-500 hover:cursor-pointer">Refund policy</li>
-              <li className="mt-1.5  hover:text-green-500 hover:cursor-pointer">Terms & Conditions</li>
-            </ul>
-          </div>
-        </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2 gap-5">
-          <div>
-            <p className=" font-bold">Others</p>
 
-            <ul className="">
-              <li className="mt-1.5  hover:text-green-500 hover:cursor-pointer">Blog</li>
-              <li className="mt-1.5  hover:text-green-500 hover:cursor-pointer">Book Store</li>
-              <li className="mt-1.5  hover:text-green-500 hover:cursor-pointer">Free Notes & Guides</li>
-              <li className="mt-1.5  hover:text-green-500 hover:cursor-pointer">Job Preparation Courses</li>
-              <li className="mt-1.5  hover:text-green-500 hover:cursor-pointer">Verify Certificate</li>
-              <li className="mt-1.5  hover:text-green-500 hover:cursor-pointer">Free Download</li>
+          {/* Company Links */}
+          <div>
+            <h3 className="text-lg font-bold mb-4">Company</h3>
+            <ul className="space-y-2">
+              {companyItemsData?.map((item: string, index: number) => (
+                <li key={index}>
+                  <a href="#" className="hover:text-green-500 transition-colors">
+                    {item}
+                  </a>
+                </li>
+              ))}
             </ul>
           </div>
+
+          {/* Other Links */}
           <div>
-            <p className=" font-bold">Keep up with us at</p>
-            <ul className="">
-              <li className="mt-1.5   hover:cursor-pointer text-nowrap">
-                Call Us: <span className="text-green-500">16910</span> (24x7)
+            <h3 className="text-lg font-bold mb-4">Others</h3>
+            <ul className="space-y-2">
+              {otherItemsData?.map((item: string, index: number) => (
+                <li key={index}>
+                  <a href="#" className="hover:text-green-500 transition-colors">
+                    {item}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Contact Information */}
+          <div>
+            <h3 className="text-lg font-bold mb-4">Keep up with us at</h3>
+            <ul className="space-y-2">
+              <li>
+                <span>Call Us: </span>
+                <a href="tel:16910" className="text-green-500 hover:underline">
+                  16910
+                </a>{" "}
+                (24x7)
               </li>
-              <li className="mt-1.5   hover:cursor-pointer text-nowrap">
-                whatsapp: <span className="text-green-500"> +8801896016252(24x7)</span>
+              <li>
+                <span>WhatsApp: </span>
+                <a href="https://wa.me/8801896016252" className="text-green-500 hover:underline">
+                  +8801896016252
+                </a>{" "}
+                (24x7)
               </li>
-              <li className="mt-1.5  hover:cursor-pointer text-nowrap">
-                Outside Bangladesh: <span className="text-green-500">+880 9610916910</span>
+              <li>
+                <span>Outside Bangladesh: </span>
+                <a href="tel:+8809610916910" className="text-green-500 hover:underline">
+                  +880 9610916910
+                </a>
               </li>
-              <li className="mt-1.5   hover:cursor-pointer text-nowrap">
-                Email Us: <span className="text-green-500"> support@10minuteschool.com</span>
+              <li>
+                <span>Email Us: </span>
+                <a href="mailto:support@10minuteschool.com" className="text-green-500 hover:underline">
+                  support@10minuteschool.com
+                </a>
               </li>
             </ul>
           </div>
         </div>
-      </div>
-      <div className="border-t  border-gray-300  p-4">
-        <div className="max-w-[1200px] mx-auto ">
-          <p className="text-gray-400 text-center pt-4">
-            2015 - 2025 Copyright © 10 Minute School. All rights reserved.
+
+        {/* Copyright */}
+        <div className="border-t border-gray-200 mt-10 pt-6">
+          <p className="text-gray-500 text-center">
+            2015 - {new Date().getFullYear()} Copyright © 10 Minute School. All rights reserved.
           </p>
         </div>
       </div>
-    </div>
+    </footer>
   );
 };
 

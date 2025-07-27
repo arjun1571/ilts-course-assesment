@@ -53,7 +53,7 @@ export default function ProductContent({ data }: { data: any }) {
                 <span className="inline-flex items-center ml-2 space-x-2">
                   <del className="text-base font-normal md:text-xl">৳5000</del>
 
-                  <div className="bg-yellow-300 text-black text-sm font-semibold px-2 py-1 rounded">1150 ৳ ছাড়</div>
+                  <div className="bg-yellow-300 text-black text-sm font-semibold px-2 py-1 rounded-md">1150 ৳ ছাড়</div>
                 </span>
               </div>
 
@@ -121,7 +121,7 @@ export default function ProductContent({ data }: { data: any }) {
           <div>
             <h2 className="mb-4 text-xl font-semibold md:text-2xl">{instructorsSection?.name}</h2>
 
-            <div className="flex items-center border border-gray-300 px-5 pt-5 gap-4 rounded">
+            <div className="flex items-center border border-gray-300 px-5 pt-5 gap-4 rounded-md">
               <div>
                 <Image
                   src={instructorsSection.values[0].image}
@@ -180,7 +180,7 @@ export default function ProductContent({ data }: { data: any }) {
           <div className="mt-8">
             <h2 className="mb-4 text-xl font-semibold md:text-xl">{featureExplanationsSection?.name}</h2>
 
-            <div className=" border border-gray-300  px-5">
+            <div className=" border border-gray-300 rounded-md  px-5">
               {featureExplanationsSection?.values?.map((featureExplanations: any, index: string) => (
                 <div
                   className=" flex flex-col items-start justify-between gap-3 py-5 md:flex-row border-b border-gray-300"
@@ -214,7 +214,7 @@ export default function ProductContent({ data }: { data: any }) {
           <div className="mt-8">
             <h2 className="mb-4 text-xl font-semibold md:text-xl">{aboutSection?.name}</h2>
 
-            <div className=" border border-gray-300  px-5">
+            <div className=" border border-gray-300 rounded-md  px-5">
               {aboutSection?.values?.map((about: any, index: string) => (
                 <Accordion
                   key={about?.id}
