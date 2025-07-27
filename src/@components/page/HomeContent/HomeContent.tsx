@@ -9,6 +9,8 @@ import Button from "@/@components/core/Button/Button";
 import Image from "next/image";
 import AskModal from "../AskModal/AskModal";
 import { useState } from "react";
+import Carousel from "@/@components/core/Carosal/Carosal";
+import HTMLParser from "@/@components/core/HtmlParser/HtmlParser";
 
 export default function ProductContent({ data }: { data: any }) {
   const [modalOpen, setModalOpen] = useState(false);
@@ -16,11 +18,25 @@ export default function ProductContent({ data }: { data: any }) {
   const tailer = data?.data.media;
   const checklist = data?.data.checklist;
 
+  const [activeSection, setActiveSection] = useState(0);
+
+  const carouselItems = data?.data.sections?.filter((item: { name: string }) => item.name && item.name.trim() !== "");
+  const instructorsSection = carouselItems?.find((item: { type: string }) => item.type === "instructors");
+  const featuresSection = carouselItems?.find((item: { type: string }) => item.type === "features");
+
+  const handleSectionClick = (orderIdx: number) => {
+    setActiveSection(orderIdx);
+    const sectionElement = document.getElementById(`section-${orderIdx}`);
+    if (sectionElement) {
+      sectionElement.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
   return (
     <div className="max-w-[1200px] mx-auto relative z-10">
       {/* Original icon that scrolls and then hides */}
       {!isFixed && (
-        <div className="absolute top-[-260px] right-0">
+        <div className="absolute top-[-220px] right-0">
           <div className="border border-gray-300 p-1 bg-white w-96">
             <VideoGallery media={tailer} />
             <div className="p-4">
@@ -61,11 +77,70 @@ export default function ProductContent({ data }: { data: any }) {
       )}
 
       <div className="flex items-start justify-between">
-        <div className="flex-1">
-          <p className="mt-20"> {data?.data?.title}</p>
-          <p>isofisdoifjsdoifj</p>
-          <p className="mt-20"> {data?.title}</p>
-          <Title title={data.title} />
+        <div className="flex-1 w-8/12">
+          <div className="w-full ">
+            <div className="mb-8">
+              <Carousel items={carouselItems} />
+            </div>
+
+            {/* Your content sections */}
+            {data?.sections?.map((section: any) => (
+              <div
+                key={section.order_idx}
+                id={`section-${section.order_idx}`}
+                className="py-8 border-b border-gray-200"
+              >
+                <h2 className="text-2xl font-bold mb-4">{section.name}</h2>
+                {/* Render your section content here */}
+                <div>
+                  {/* Example: Render features if section type is features */}
+                  {section.type === "features" && section.values && (
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                      {section.values.map((feature: any) => (
+                        <div key={feature.id} className="bg-white p-6 rounded-lg shadow-sm">
+                          <img src={feature.icon} alt="" className="w-12 h-12 mb-4" />
+                          <h3 className="text-lg font-semibold mb-2">{feature.title}</h3>
+                          <p className="text-gray-600">{feature.subtitle}</p>
+                        </div>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              </div>
+            ))}
+          </div>
+
+          <div>
+            <h2 className="mb-4 text-xl font-semibold md:text-2xl">{instructorsSection?.name}</h2>
+
+            <div className="flex items-center border border-gray-300 px-5 pt-5 gap-4 rounded">
+              <div>
+                <Image
+                  src={instructorsSection.values[0].image}
+                  alt={instructorsSection.values[0].name}
+                  height={100}
+                  width={100}
+                  className=" rounded-full h-20 w-20"
+                />
+              </div>
+              <div className="">
+                <p className="text-base font-semibold">{instructorsSection.values[0].name}</p>
+                <HTMLParser htmlContent={instructorsSection.values[0].description || ""} />
+              </div>
+            </div>
+          </div>
+
+          <div className="mt-8">
+            <h2 className="mb-4 text-xl font-semibold md:text-xl">{featuresSection?.name}</h2>
+
+            <div className="border border-gray-300 rounded">
+              {featuresSection?.values?.map((feature: any, index: string) => (
+                <div className="flex items-center border border-gray-300 px-5 pt-5 gap-4 rounded " key={index}>
+                  sdfsdf
+                </div>
+              ))}
+            </div>
+          </div>
 
           <h1>sdofposdfposdpf</h1>
           <h1>sdofposdfposdpf</h1>
@@ -144,7 +219,7 @@ export default function ProductContent({ data }: { data: any }) {
           <h1>sdofposdfposdpf</h1>
         </div>
 
-        <div className=" sticky top-20 ml-4">
+        <div className=" sticky top-20 ml-4 w-8/12">
           {isFixed && (
             <>
               <div className="p-4 mb-4 border border-gray-300 bg-white w-96 ">

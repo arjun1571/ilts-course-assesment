@@ -22,7 +22,7 @@ export default async function ProductPage({ params }: { params: { lang: "en" | "
       <div>
         <div className="relative">
           <div className="bg-gradient-to-br from-black to-blue-900 min-h-[300px] w-full absolute top-0 left-0"></div>
-          <div className="relative flex items-center min-h-[300px] text-white max-w-[1200px] mx-auto my-[40px]">
+          <div className="relative flex items-center min-h-[300px] text-white max-w-[1200px] mx-auto mt-[40px]">
             <div className="w-[720px] mx-4">
               <h2 className="text-4xl font-semibold">{data?.data?.title}</h2>
               <p className="my-2">(82.6% শিক্ষার্থী কোর্স শেষে ৫ রেটিং দিয়েছেন)</p>
