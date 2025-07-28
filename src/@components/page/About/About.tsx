@@ -27,12 +27,13 @@ const About: React.FC<AboutSectionProps> = ({ orderIdx, sectionName, abouts }) =
     <div id={`section-${orderIdx}`} className="pb-8 w-full">
       <h2 className="mb-4 text-2xl font-bold">{sectionName}</h2>
       <div className="border border-gray-300 rounded-md pb-5 px-5">
-        {abouts.map((about) => (
+        {abouts.map((about, index: number) => (
           <Accordion
             key={about.id}
             title={about.title}
             isOpen={openAccordion === about.id}
             onToggle={() => handleAccordionClick(about.id)}
+            isLast={index === abouts.length - 1}
           >
             <div className="p-4 bg-white rounded-b-lg text-text-secondary font-inter font-medium">
               <HTMLParser htmlContent={about.description} />

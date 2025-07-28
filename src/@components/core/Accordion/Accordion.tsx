@@ -8,12 +8,15 @@ interface AccordionProps {
   isOpen: boolean;
   onToggle: () => void;
   children: React.ReactNode;
+  isLast?: boolean;
 }
 
-const Accordion: React.FC<AccordionProps> = ({ title, isOpen, onToggle, children }) => {
+const Accordion: React.FC<AccordionProps> = ({ title, isOpen, onToggle, children, isLast }) => {
   return (
     <div
-      className={`accordion w-full mt-4 cursor-pointer accordion-header  justify-between bg-white border-b border-gray-300  transition-all duration-300 ease-in-out`}
+      className={`accordion w-full mt-4 cursor-pointer accordion-header  justify-between bg-white  transition-all duration-300 ease-in-out ${
+        isLast ? "" : "border-b border-gray-300"
+      }`}
       onClick={onToggle}
     >
       <div className="flex items-center justify-between">
